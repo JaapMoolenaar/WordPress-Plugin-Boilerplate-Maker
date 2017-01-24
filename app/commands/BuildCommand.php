@@ -78,7 +78,7 @@ class BuildCommand extends App\Command
     
     protected function getDestinationPath($pluginname)
     {
-        $path = _output_path($pluginname).DIRECTORY_SEPARATOR;
+        $path = _output_path($this->mainName($pluginname)).DIRECTORY_SEPARATOR;
         
         $this->writeln("Output path: $path");
         
@@ -212,6 +212,7 @@ class BuildCommand extends App\Command
         $pluginname = preg_replace('/([A-Z][a-z])/', ' $1', $pluginname);
         $pluginname = strtolower($pluginname);
         $pluginname = str_replace(['-', '_'], ' ', $pluginname);
+        $pluginname = trim($pluginname);
         
         return explode(' ', $pluginname);
     }
